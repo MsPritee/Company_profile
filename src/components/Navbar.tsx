@@ -19,29 +19,33 @@ export default function Header() {
   }, []);
 
   // Handle active section
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'services', 'about', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const sections = ['home', 'services', 'about', 'contact'];
+  //     const current = sections.find(section => {
+  //       const element = document.getElementById(section);
+  //       if (element) {
+  //         const rect = element.getBoundingClientRect();
+  //         return rect.top <= 100 && rect.bottom >= 100;
+  //       }
+  //       return false;
+  //     });
+  //     if (current) setActiveSection(current);
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'Home', href: '/', id: 'home' },
     { name: 'Services', href: '/services', id: 'services' },
     { name: 'About', href: '/about', id: 'about' },
     { name: 'Contact', href: '/contact', id: 'contact' },
   ];
+
+  const handleNavClick = (sectionId: string) => {
+    setActiveSection(sectionId);
+  };
 
   return (
     <header 
@@ -77,6 +81,7 @@ export default function Header() {
               <Link
                 key={link.id}
                 href={link.href}
+                onClick={() => handleNavClick(link.id)}
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   isScrolled 
                     ? 'text-gray-700 hover:text-blue-600' 
@@ -128,7 +133,10 @@ export default function Header() {
             <Link
               key={link.id}
               href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                handleNavClick(link.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`block px-3 py-2 rounded-md text-base font-medium ${
                 activeSection === link.id
                   ? 'bg-blue-50 text-blue-600'
@@ -138,9 +146,9 @@ export default function Header() {
               {link.name}
             </Link>
           ))}
-          <button className="w-full mt-4 bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transform hover:scale-105 transition-all duration-300">
+          {/* <button className="w-full mt-4 bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transform hover:scale-105 transition-all duration-300">
             Get Started
-          </button>
+          </button> */}
         </div>
       </div>
     </header>
