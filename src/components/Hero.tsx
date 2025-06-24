@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -56,12 +57,12 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <Link href="/contact" className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                 Get Started
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
+              </Link>
+              <Link href="/about" className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
                 Learn More
-              </button>
+              </Link>
             </motion.div>
           </motion.div>
 

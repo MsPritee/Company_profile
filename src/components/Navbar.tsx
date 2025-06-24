@@ -49,13 +49,17 @@ export default function Header() {
 
   return (
     <header 
+      style={{ perspective: '1000px' }}
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+          ? 'bg-white/95 backdrop-blur-md shadow-lg h-20' 
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-transform duration-300"
+        style={{ transformStyle: 'preserve-3d', transformOrigin: 'top'}}
+      >
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link 
@@ -69,7 +73,7 @@ export default function Header() {
               </div>
             </div>
             <span className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
+              isScrolled ? 'text-gray-900' : 'text-black'
             }`}>
               DevCo
             </span>
@@ -85,7 +89,7 @@ export default function Header() {
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   isScrolled 
                     ? 'text-gray-700 hover:text-blue-600' 
-                    : 'text-white hover:text-blue-200'
+                    : 'text-black hover:text-blue-400'
                 } ${
                   activeSection === link.id 
                     ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:transform after:scale-x-100' 
@@ -95,9 +99,9 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            {/* <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
               Get Started
-            </button>
+            </button> */}
           </nav>
 
           {/* Mobile Menu Button */}
